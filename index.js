@@ -21,6 +21,7 @@ for (const file of commandFiles) {
 
     if ('data' in command && 'execute' in command) {
         client.commands.set(command.data.name, command);
+        console.log(`Loaded command ${command.data.name}`);
     }
     else {
         console.error(`The command ${filePath} does not have a data and execute method as expected`);
