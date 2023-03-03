@@ -5,6 +5,10 @@ require('dotenv').config();
 
 const token = process.env.DISCORD_TOKEN;
 
+if (!token) {
+    throw new Error('No token information provided');
+}
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 
