@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Server } = require('net');
 require('dotenv').config();
 
 const token = process.env.DISCORD_TOKEN;
@@ -64,4 +65,10 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
-client.login(token);
+client.login(token).then(() => {
+    console.log('Client connected');
+    const s = new Server();
+    const port = process.env['WEBSITES_PORT'] || 80;
+    s.listen(port);
+    console.log(`Also listening for traffic on port ${port}`);
+});
