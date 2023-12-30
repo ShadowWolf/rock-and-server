@@ -68,7 +68,7 @@ client.on(Events.InteractionCreate, async interaction => {
 client.login(token).then(() => {
     console.log('Client connected');
     const s = new Server();
-    const port = process.env['WEBSITES_PORT'] || 80;
+    const port = process.env['WEBSITES_PORT'] || process.env['WEBSITE_PORT'] || process.env['PORT'] || 8080;
     s.listen(port);
     console.log(`Also listening for traffic on port ${port}`);
 });
